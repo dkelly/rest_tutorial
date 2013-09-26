@@ -6,6 +6,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -32,5 +33,19 @@ public class Resource {
     @Produces(MediaType.APPLICATION_JSON)
     public Fruit removeFruit(@PathParam("id") int id) {
         return Storage.instance().removeFruit(id);
+    }
+
+    @POST
+    @Path("fruits")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addFruit(Fruit f) {
+        Storage.instance().addFruit(f);
+    }
+
+    @PUT
+    @Path("fruits/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addFruit(@PathParam("id") int id, Fruit f) {
+        Storage.instance().updateFruit(id, f);
     }
 }

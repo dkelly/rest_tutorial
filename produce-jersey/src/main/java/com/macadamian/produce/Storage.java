@@ -47,4 +47,18 @@ public class Storage {
         }
         return rv;
     }
+    
+    public void addFruit(Fruit f) {
+        f.id = _fruits.size() + 1;
+        _fruits.put(f.id, f);
+    }
+
+    public void updateFruit(int id, Fruit f) {
+        if (_fruits.containsKey(id)) {
+            Fruit stored = _fruits.get(id);
+            stored.type = f.type;
+            stored.quantity = f.quantity;
+            stored.price = f.price;
+        }
+    }
 }
