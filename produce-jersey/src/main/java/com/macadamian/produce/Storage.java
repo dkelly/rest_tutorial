@@ -61,4 +61,22 @@ public class Storage {
             stored.price = f.price;
         }
     }
+
+    public List<Purchase> allPurchases() {
+        List<Purchase> rv = new ArrayList<Purchase>();
+        rv.addAll(_purchases.values());
+        return rv;
+    }
+
+    public void addPurchase(final Purchase p) {
+        try {
+            Purchase added = new Purchase() {{ id = _purchases.size() + 1; fruit_id = p.fruit_id; quantity = p.quantity; }};
+            Fruit f = _fruits.get(p.fruit_id);
+            f.quantity -= p.quantity;
+            _fruits.put(f.id, f);
+            _purchases.put(added.id, added);
+            
+        } catch (Exception e) {
+        }
+    }
 }

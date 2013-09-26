@@ -48,4 +48,18 @@ public class Resource {
     public void addFruit(@PathParam("id") int id, Fruit f) {
         Storage.instance().updateFruit(id, f);
     }
+
+    @GET
+    @Path("purchases")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Purchase> allPurchases() {
+        return Storage.instance().allPurchases();
+    }
+
+    @POST
+    @Path("purchases")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addPurchase(Purchase p) {
+        Storage.instance().addPurchase(p);
+    }
 }
